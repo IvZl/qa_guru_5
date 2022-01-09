@@ -18,7 +18,13 @@ public class RegistrationPage {
             enterPhone = $("#userNumber"),
             resultTable = $(".table-responsive"),
             enterSubject = $("#subjectsInput"),
-            selectHobbies = $("#hobbiesWrapper");
+            selectHobbies = $("#hobbiesWrapper"),
+            enterAddress = $("#currentAddress"),
+            selectFile = $("#uploadPicture"),
+            selectState = $("#state #react-select-3-input"),
+            selectCity =  $("#city #react-select-4-input");
+
+
 
     public CalendarComponent calendarComponent = new CalendarComponent();
 
@@ -75,5 +81,33 @@ public class RegistrationPage {
         resultTable.$(byText(key)).parent().shouldHave(text(value));
 
         return this;
+    }
+
+    public RegistrationPage setAddress(String address) {
+        enterAddress.setValue(address);
+
+        return this;
+    }
+
+    public RegistrationPage uploadFile(String path) {
+        selectFile.uploadFromClasspath(path);
+
+        return this;
+    }
+
+    public RegistrationPage selectState(String state) {
+        selectState.setValue(state).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage selectCity(String city) {
+        selectCity.setValue(city).pressEnter();
+
+        return this;
+    }
+
+    public void clickSubmit() {
+        $("[id=submit]").click();
     }
 }
